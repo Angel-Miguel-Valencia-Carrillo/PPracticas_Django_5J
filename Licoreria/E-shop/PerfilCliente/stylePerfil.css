@@ -1,0 +1,63 @@
+/* General */
+body {
+    color: #516369;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Caja de perfil */
+.login-box {
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+}
+
+/* Títulos */
+.login-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #00eabb;
+    text-transform: uppercase;
+}
+
+/* Botón */
+.login-box .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #285da4; /* Color principal */
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.login-box .btn:hover {
+    background-color: #00caa3; /* Color de hover */
+    color: white;
+    transform: scale(1.05); /* Ligero zoom */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .login-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .login-box h2 {
+        font-size: 1.5rem;
+    }
+
+    .login-box .btn {
+        font-size: 0.9rem;
+    }
+}
