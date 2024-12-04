@@ -1,0 +1,81 @@
+{% extends "base.html"%}
+{% load static %}
+{% block cuerpo  %}
+<div class="row"><!-- la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda-->
+    <h1>Productos</h1>
+    <div class="card"> <!-- tarjeta -->
+        <div class="card-body">
+            <form action="/registrarProducto/" method="POST"> {% csrf_token %} <!-- formulario-->
+                <div class="form-roup">
+                    <input type="text" id="username" name="txtid_producto" class="form-control"
+                    placeholder="Id Producto" minLenght="6" maxLenght="6" required>
+                </div>
+                <div class="form-roup py-3">
+                    <input type="text" id="username" name="txtnombre" class="form-control"
+                    placeholder="Nombre Producto"  maxLenght="100" required>
+                </div>
+                <div class="form-roup py-3">
+                    <input type="text" id="username" name="txttipo" class="form-control"
+                    placeholder="Tipo "  maxLenght="100" required>
+                </div>
+                <div class="form-roup py-2">
+                    <input type="text" steps="0.01" id="numcredito" name="numprecio" class="form-control"
+                    placeholder="Precio" required>
+                </div>
+                <div class="form-roup py-3">
+                    <input type="text" id="username" name="txtdescripcion" class="form-control"
+                    placeholder="descripcion"  maxLenght="100" required>
+                </div>
+                <div class="form-roup py-2">
+                    <input type="text" id="numcredito" name="numcantidad" class="form-control"
+                    value="1"  min="1" max="9" required>
+                </div>
+                <div class="form-roup py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form><!-- formulario-->
+        </div>
+    </div><!-- tarjeta -->
+</div><!-- columna izquierda-->
+
+<div class="col-sm-12 col-md-8 col-lg-8 col-xl-4"><!-- columna derecha-->
+    <img class="w-50" src="{% static 'img/bebidas.webp' %}" width="400" height="400" alt="">
+    <h1>Listado Productos</h1>
+<div class="table-responsive"><!-- tabla responsiva-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">id_producto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">precio</th>
+            <th scope="col">Descripcion</th>
+            <th colspan ="2">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for m in misproductos %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{m.id_producto}}</td>
+                <td>{{m.nombre}}</td>
+                <td>{{m.tipo}}</td>
+                <td>{{m.precio}}</td>
+                <td>{{m.descripcion}}</td>
+                <td>{{m.cantidad}}</td>
+                <td> <a href="seleccionarProducto/{{m.id_producto}}" class="btn btn-warning">Editar</a> </td> 
+                <td> <a href="borrarProducto/{{m.id_producto}}" class="btn btn-danger">Borrar</a> </td> 
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+      </table>
+</div><!-- tabla responsiva-->
+</div><!-- columna derecha-->
+
+</div><!-- la fila-->
+    {% endblock %}
