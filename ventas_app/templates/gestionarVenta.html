@@ -1,0 +1,87 @@
+{% extends "base.html"%}
+{% load static %}
+{% block cuerpo  %}
+<div class="row"><!-- la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda-->
+    <h1>Ventas</h1>
+    <div class="card"> <!-- tarjeta -->
+        <div class="card-body">
+            <form action="/registrarVenta/" method="POST"> {% csrf_token %} <!-- formulario-->
+                <div class="form-roup">
+                    <input type="text" id="username" name="txtid_venta" class="form-control"
+                    placeholder="Id venta" minLenght="6" maxLenght="6" required>
+                </div>
+                <div class="form-roup py-3">
+                    <input type="text" id="username" name="txtid_cliente" class="form-control"
+                    placeholder="Id Cliente"  maxLenght="100" required>
+                </div>
+                <div class="form-roup py-3">
+                    <input type="text" id="username" name="txtid_empleado" class="form-control"
+                    placeholder="Id Empleado"  maxLenght="100" required>
+                </div>
+                <div class="form-roup py-3">
+                    <input type="text" id="username" name="txtid_producto" class="form-control"
+                    placeholder="Id Producto "  maxLenght="100" required>
+                </div>
+                <div class="form-roup py-2">
+                    <input type="text" id="numcredito" name="numfecha_venta" class="form-control"
+                    value="1"  min="1" max="9" required>
+                </div>
+                <div class="form-roup py-2">
+                    <input type="text" id="numcredito" name="numcant" class="form-control"
+                    value="1"  min="1" max="9" required>
+                </div>
+                <div class="form-roup py-2">
+                    <input type="text" id="numcredito" name="numimporte_pagar" class="form-control"
+                    value="1"  min="1" max="9" required>
+                </div>
+                <div class="form-roup py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form><!-- formulario-->
+        </div>
+    </div><!-- tarjeta -->
+</div><!-- columna izquierda-->
+
+<div class="col-sm-12 col-md-8 col-lg-8 col-xl-4"><!-- columna derecha-->
+    <img class="w-50" src="{% static 'img/ventas.jpg' %}" width="400" height="400" alt="">
+    <h1>Listado ventas</h1>
+<div class="table-responsive"><!-- tabla responsiva-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">id_venta</th>
+            <th scope="col">id_cliente</th>
+            <th scope="col">id_empleado</th>
+            <th colspan ="2">id_producto</th>
+            <th scope="col">fecha de venta</th>
+            <th scope="col">cantidad</th>
+            <th scope="col">importe a pagar</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for m in misventas %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{m.id_venta}}</td>
+                <td>{{m.id_cliente}}</td>
+                <td>{{m.id_empleado}}</td>
+                <td>{{m.id_producto}}</td>
+                <td>{{m.fecha_venta}}</td>
+                <td>{{m.cant}}</td>
+                <td>{{m.importe_pagar}}</td>
+                <td> <a href="seleccionarVenta/{{m.id_venta}}" class="btn btn-warning">Editar</a> </td> 
+                <td> <a href="borrarVenta/{{m.id_venta}}" class="btn btn-danger">Borrar</a> </td> 
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+      </table>
+</div><!-- tabla responsiva-->
+</div><!-- columna derecha-->
+
+</div><!-- la fila-->
+    {% endblock %}
